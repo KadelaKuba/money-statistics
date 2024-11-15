@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use DI\ContainerBuilder;
+use MoneyStatistics\Environment;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/** @see https://github.com/php-runtime/runtime */
+require_once __DIR__ . '/../vendor/autoload_runtime.php';
+
+umask(0000);
+
+(new Dotenv())->bootEnv(__DIR__ . '/../.env');
+
+return function (InputInterface $input, OutputInterface $output): Application {
+    $environment = Environment::createWithServerAppEnv();
+    $containerBuilder = new ContainerBuilder();
+
+    $addSettings = require __DIR__ . '/../config/config.php';
+    $addSettings($containerBuilder, $environment);
+
+    $container = $containerBuilder->build();
+
+    $app = new Application('Money statistics app');
+
+    $app->setCommandLoader(
+        new ContainerCommandLoader($container, require __DIR__ . '/../config/commands.php')
+    );
+
+    return $app;
+};

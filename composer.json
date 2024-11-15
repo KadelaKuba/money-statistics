@@ -1,0 +1,20 @@
+{
+    "name": "vendor/money-statistics",
+    "autoload": {
+        "psr-4": {
+            "MoneyStatistics\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.3",
+        "symfony/console": "^7.1",
+        "symfony/runtime": "^7.1",
+        "symfony/dotenv": "^7.1",
+        "php-di/php-di": "^7.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
+    }
+}

@@ -1,0 +1,10 @@
+services:
+  money-statistics:
+    tty: true
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+      target: development
+    container_name: money-statistics
+    volumes:
+      - .:/var/www/html

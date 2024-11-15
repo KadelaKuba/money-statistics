@@ -1,0 +1,9 @@
+# Locally used .env variables
+/.env.*local
+/.phpunit.result.cache
+
+/vendor
+/data/*
+
+!.git-keep
+/.idea
