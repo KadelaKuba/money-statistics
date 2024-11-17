@@ -12,3 +12,6 @@ stop:
 
 container-bash:
 	docker-compose exec money-statistics bash
+
+parse-airbank-transactions:
+	docker-compose exec money-statistics php bin/console app:parse-airbank-transactions
