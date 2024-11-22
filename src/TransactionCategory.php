@@ -2,14 +2,20 @@
 
 namespace MoneyStatistics;
 
+use Brick\Money\Money;
 use Brick\Money\MoneyBag;
 
 class TransactionCategory implements \JsonSerializable
 {
     /**
-     * @var Transaction[]
+     * @param Transaction[] $transactions
      */
-    public array $transactions = [];
+    public function __construct(
+        public string $name,
+        public string $monthName,
+        public array $transactions = [],
+    ) {
+    }
 
     public function add(Transaction $transaction): void
     {
@@ -27,6 +33,16 @@ class TransactionCategory implements \JsonSerializable
         return $totalAmount;
     }
 
+    public function getTotalAmountFloat(): float
+    {
+        return $this->calculateTotalAmount()->getAmount('CZK')->abs()->toFloat();
+    }
+
+    public function getTotalAmountReadable(): string
+    {
+        return Money::of($this->calculateTotalAmount()->getAmount('CZK')->abs(), 'CZK')->formatTo('cs-CZ');
+    }
+
 
     /**
      * @return array{totalAmount: float}
@@ -34,8 +50,10 @@ class TransactionCategory implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-//            'transactions' => $this->transactions,
-            'totalAmount' => $this->calculateTotalAmount()->getAmount('CZK')->toBigDecimal()->abs()->toFloat()
+            'name' => $this->name,
+            'transactions' => $this->transactions,
+            'totalAmount' => $this->getTotalAmountFloat(),
+            'monthName' => $this->monthName,
         ];
     }
 }
