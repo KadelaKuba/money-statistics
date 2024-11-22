@@ -28,6 +28,9 @@ class TransactionCategory implements \JsonSerializable
     }
 
 
+    /**
+     * @return array{totalAmount: float}
+     */
     public function jsonSerialize(): array
     {
         return [

@@ -17,6 +17,9 @@ class Transaction implements \JsonSerializable
         return new self($name, $amount);
     }
 
+    /**
+     * @return array{categoryName: string, amount: \Brick\Money\Money}
+     */
     public function jsonSerialize(): array
     {
         return [

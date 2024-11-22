@@ -17,7 +17,11 @@
         "brick/money": "^0.10.0"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "phpstan/phpstan": "^2.0"
+    },
+    "scripts": {
+        "phpstan": "phpstan analyse -c phpstan.neon"
     },
     "config": {
         "allow-plugins": {
