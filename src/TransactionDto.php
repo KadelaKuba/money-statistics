@@ -6,7 +6,6 @@ use Brick\Money\Money;
 
 class TransactionDto
 {
-
     public function __construct(
         public string $date,
         public string $direction,
@@ -45,5 +44,4 @@ class TransactionDto
     {
         return Money::of(str_replace(',', '.', $this->amount), $this->currency);
     }
-
 }

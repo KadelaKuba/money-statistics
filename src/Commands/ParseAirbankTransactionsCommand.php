@@ -3,8 +3,8 @@
 namespace MoneyStatistics\Commands;
 
 use League\Csv\Reader;
-use MoneyStatistics\TransactionsMapper;
 use MoneyStatistics\TransactionDto;
+use MoneyStatistics\TransactionsMapper;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
