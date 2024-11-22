@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-alpine as base
+FROM php:8.4-fpm-alpine as base
 
 ARG project_root=.
 ARG user_gid=1000
@@ -30,7 +30,7 @@ RUN apk add --update --no-cache --virtual .build-dependencies \
     docker-php-ext-install zip && \
     docker-php-ext-enable opcache \
     && \
-    pecl install xdebug-3.3.2 && \
+    pecl install xdebug-3.4.0beta1 && \
     docker-php-ext-enable xdebug \
     && \
     apk del .build-dependencies && \
