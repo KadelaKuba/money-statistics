@@ -2,9 +2,6 @@
 
 namespace MoneyStatistics;
 
-use Brick\Money\MoneyBag;
-use function DI\add;
-
 class TransactionsMapper
 {
     /**
