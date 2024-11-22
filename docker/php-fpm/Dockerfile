@@ -5,10 +5,10 @@ ARG user_gid=1000
 ARG user_uid=1000
 
 # Setup non-root user to avoid permission issues later
-RUN addgroup --gid ${user_gid} trayto && \
-    adduser --disabled-password --uid ${user_uid} --ingroup trayto trayto && \
+RUN addgroup --gid ${user_gid} kadela && \
+    adduser --disabled-password --uid ${user_uid} --ingroup kadela kadela && \
     mkdir -p /var/www/html && \
-    chown -R trayto:trayto /var/www/html
+    chown -R kadela:kadela /var/www/html
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
@@ -39,7 +39,7 @@ RUN apk add --update --no-cache --virtual .build-dependencies \
     echo "source /etc/bash_completion" >> ~/.bashrc
 
 # Switch to non-root user. Rest of dockerfile and at runtime is under this user.
-USER trayto
+USER kadela
 
 WORKDIR /var/www/html
 
@@ -52,4 +52,4 @@ USER root
 
 COPY ${project_root}/docker/php-fpm/php.development.ini /usr/local/etc/php/php.ini
 
-USER trayto
+USER kadela
