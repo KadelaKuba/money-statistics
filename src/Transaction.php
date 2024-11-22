@@ -8,13 +8,14 @@ class Transaction implements \JsonSerializable
 {
     private function __construct(
         public readonly string $categoryName,
-        public readonly Money  $amount,
+        public readonly Money $amount,
+        public readonly \DateTimeImmutable $date,
     ) {
     }
 
-    public static function create(string $name, Money $amount): self
+    public static function create(string $name, Money $amount, \DateTimeImmutable $date): self
     {
-        return new self($name, $amount);
+        return new self($name, $amount, $date);
     }
 
     /**
@@ -25,6 +26,7 @@ class Transaction implements \JsonSerializable
         return [
             'categoryName' => $this->categoryName,
             'amount' => $this->amount,
+            'date' => $this->date->format('m'),
         ];
     }
 }

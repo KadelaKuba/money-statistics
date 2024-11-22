@@ -6,7 +6,7 @@ class TransactionsMapper
 {
     /**
      * @param \Iterator $transactions
-     * @return TransactionCategory[]
+     * @return TransactionCategory[][]
      */
     public function getTransactionsByCategory(\Iterator $transactions): array
     {
@@ -19,17 +19,19 @@ class TransactionsMapper
             }
 
             $categoryName = $transactionDto->getCategory();
+            $month = $transactionDto->getDate()->format('m');
 
             $transaction = Transaction::create(
                 $categoryName,
-                $transactionDto->getMoney()
+                $transactionDto->getMoney(),
+                $transactionDto->getDate(),
             );
 
-            if (array_key_exists($transaction->categoryName, $transactionCategories) === false) {
-                $transactionCategories[$categoryName] = new TransactionCategory();
+            if (array_key_exists($month, $transactionCategories) === false || array_key_exists($transaction->categoryName, $transactionCategories[$month]) === false) {
+                $transactionCategories[$month][$categoryName] = new TransactionCategory($categoryName, $transactionDto->getDate()->format('F'));
             }
 
-            $transactionCategories[$categoryName]->add($transaction);
+            $transactionCategories[$month][$categoryName]->add($transaction);
         }
 
         return $transactionCategories;

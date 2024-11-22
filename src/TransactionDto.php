@@ -3,11 +3,21 @@
 namespace MoneyStatistics;
 
 use Brick\Money\Money;
+use League\Csv\Serializer\CastToDate;
+use League\Csv\Serializer\MapCell;
 
 class TransactionDto
 {
     public function __construct(
-        public string $date,
+        #[MapCell(
+            column: 'date',
+            cast: CastToDate::class,
+            options: [
+                'format' => '!d/m/Y',
+            ],
+            trimFieldValueBeforeCasting: true
+        )]
+        public \DateTimeImmutable $date,
         public string $direction,
         public string $category,
         public string $currency,
@@ -15,7 +25,7 @@ class TransactionDto
     ) {
     }
 
-    public function getDate(): string
+    public function getDate(): \DateTimeImmutable
     {
         return $this->date;
     }
