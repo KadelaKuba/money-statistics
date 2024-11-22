@@ -25,7 +25,7 @@ RUN apk add --update --no-cache --virtual .build-dependencies \
     libxml2-dev \
     && \
     apk add --no-cache \
-    bash git nano vim curl zip unzip libzip-dev \
+    bash git nano vim curl zip unzip libzip-dev libintl icu icu-dev \
     && \
     docker-php-ext-install zip && \
     docker-php-ext-enable opcache \
@@ -37,6 +37,11 @@ RUN apk add --update --no-cache --virtual .build-dependencies \
     rm -rf /tmp/* /var/cache/apk/* \
     && \
     echo "source /etc/bash_completion" >> ~/.bashrc
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
+RUN docker-php-ext-enable intl
 
 # Switch to non-root user. Rest of dockerfile and at runtime is under this user.
 USER kadela
