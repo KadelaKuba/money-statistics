@@ -1,6 +1,6 @@
 <?php
 
-namespace MoneyStatistics;
+namespace App;
 
 use Brick\Money\Money;
 

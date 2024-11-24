@@ -2,7 +2,7 @@
     "name": "vendor/money-statistics",
     "autoload": {
         "psr-4": {
-            "MoneyStatistics\\": "src/"
+            "App\\": "src/"
         }
     },
     "require": {
