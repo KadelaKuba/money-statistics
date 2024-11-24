@@ -1,10 +1,26 @@
 services:
-  money-statistics:
+  php-fpm:
     tty: true
     build:
       context: .
       dockerfile: docker/php-fpm/Dockerfile
       target: development
-    container_name: money-statistics
+    container_name: php-fpm
     volumes:
       - .:/var/www/html
+  db:
+    image: mariadb:11.4.4
+    container_name: db
+    restart: on-failure
+    volumes:
+      - type: bind
+        source: ./var/docker/db
+        target: /var/lib/mysql
+    ports:
+      - "3306:3306"
+    # this DB Container is used for development only
+    environment:
+      MARIADB_ROOT_PASSWORD: "root"
+      MARIADB_USER: "money_statistics"
+      MARIADB_PASSWORD: ""
+      MARIADB_DATABASE: "money_statistics"

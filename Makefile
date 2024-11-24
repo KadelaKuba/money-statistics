@@ -11,19 +11,19 @@ stop:
 	docker-compose down
 
 container-bash:
-	docker-compose exec money-statistics bash
+	docker-compose exec php-fpm bash
 
 standards:
-	docker-compose exec money-statistics composer standards
+	docker-compose exec php-fpm composer standards
 
 standards-fix:
-	docker-compose exec money-statistics composer standards-fix
+	docker-compose exec php-fpm composer standards-fix
 
 phpstan:
-	docker-compose exec money-statistics composer phpstan
+	docker-compose exec php-fpm composer phpstan
 
 check-all:
-	docker-compose exec money-statistics composer check-all
+	docker-compose exec php-fpm composer check-all
 
 parse-airbank-transactions:
-	docker-compose exec money-statistics php bin/console app:parse-airbank-transactions
+	docker-compose exec php-fpm php bin/console app:parse-airbank-transactions

@@ -3,7 +3,8 @@
 /.phpunit.result.cache
 
 /vendor
-/src/var/data/*
+/var/data/*
+/var/docker
 /logs/*
 
 !.git-keep

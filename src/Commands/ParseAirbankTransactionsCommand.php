@@ -15,7 +15,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 #[AsCommand(name: 'app:parse-airbank-transactions')]
 class ParseAirbankTransactionsCommand extends Command
 {
-    private const string TRANSACTION_FILE_PATH = __DIR__ . '/../var/data/airbank_utf8_2024.csv';
+    private const string TRANSACTION_FILE_PATH = __DIR__ . '/../../var/data/airbank_utf8_2024.csv';
 
     public function __construct(
         private TransactionsMapper $transactionsMapper,
