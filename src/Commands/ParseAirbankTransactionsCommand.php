@@ -1,11 +1,11 @@
 <?php
 
-namespace MoneyStatistics\Commands;
+namespace App\Commands;
 
+use App\TransactionCategory;
+use App\TransactionDto;
+use App\TransactionsMapper;
 use League\Csv\Reader;
-use MoneyStatistics\TransactionCategory;
-use MoneyStatistics\TransactionDto;
-use MoneyStatistics\TransactionsMapper;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
