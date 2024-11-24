@@ -15,7 +15,10 @@
         "league/csv": "^9.18",
         "moneyphp/money": "^3.3",
         "brick/money": "^0.10.0",
-        "ext-intl": "*"
+        "ext-intl": "*",
+        "doctrine/orm": "^3.3",
+        "doctrine/migrations": "^3.8",
+        "symfony/cache": "^7.1"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
@@ -29,7 +32,9 @@
         "check-all": [
             "@standards",
             "@phpstan"
-        ]
+        ],
+        "migrations-migrate": "php bin/console migrations:migrate -v --no-interaction",
+        "migrations-diff": "php bin/console migrations:diff -v --no-interaction"
     },
     "config": {
         "allow-plugins": {

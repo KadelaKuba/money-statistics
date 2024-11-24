@@ -27,3 +27,9 @@ check-all:
 
 parse-airbank-transactions:
 	docker-compose exec php-fpm php bin/console app:parse-airbank-transactions
+
+migrations-diff:
+	docker-compose exec php-fpm composer migrations-diff
+
+migrations-migrate:
+	docker-compose exec php-fpm composer migrations-migrate
