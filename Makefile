@@ -13,6 +13,9 @@ stop:
 container-bash:
 	docker-compose exec php-fpm bash
 
+build-dev:
+	docker-compose exec php-fpm composer build-dev
+
 standards:
 	docker-compose exec php-fpm composer standards
 
